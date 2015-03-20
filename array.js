@@ -1,24 +1,24 @@
-function uniq(array) {
+Array.prototype.uniq = function() {
   var uniqArray = [];
-  for(var i = 0; i < array.length; i++) {
+  for(var i = 0; i < this.length; i++) {
     var included = false;
     for(var j = 0; j < uniqArray.length; j++) {
-      if(array[i] === uniqArray[j]){
+      if(this[i] === uniqArray[j]){
         included = true;
       }
     }
     if(!included) {
-      uniqArray.push(array[i]);
+      uniqArray.push(this[i]);
     }
   }
   return uniqArray;
 }
 
-function twoSum(array) {
+Array.prototype.twoSum = function () {
   var result = [];
-  for (var i = 0; i < array.length - 1; i++) {
-    for (var j = i + 1; j < array.length; j++) {
-      if(array[i] + array[j] === 0){
+  for (var i = 0; i < this.length - 1; i++) {
+    for (var j = i + 1; j < this.length; j++) {
+      if(this[i] + this[j] === 0){
         result.push([i, j]);
       }
     }
@@ -26,24 +26,22 @@ function twoSum(array) {
   return result;
 }
 
-function transpose(array) {
-  var result = new Array(array[0].length);
-  for (var i = 0; i < array[0].length; i++) {
+Array.prototype.transpose = function () {
+  var result = new Array(this[0].length);
+  for (var i = 0; i < this[0].length; i++) {
     result[i] = [];
   }
 
-  for (var j = 0; j < array.length; j++) {
-    for (var k = 0; k < array[j].length; k++) {
-      result[k].push(array[j][k]);
+  for (var j = 0; j < this.length; j++) {
+    for (var k = 0; k < this[j].length; k++) {
+      result[k].push(this[j][k]);
     }
   }
   return result;
 }
 
-console.log(transpose([
+console.log([
     [0, 1, 2],
     [3, 4, 5],
     [6, 7, 8]
-  ]));
-
-console.log(transpose([[2, 1], [3, 4], [5, 6]]));
+  ].transpose());

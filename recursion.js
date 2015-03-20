@@ -68,8 +68,43 @@ function binarySearch(arr, target) {
   }
 }
 
-console.log(binarySearch([2, 4, 6, 8, 10], 6));
-console.log(binarySearch([1, 3, 4, 5, 9], 5))
-console.log(binarySearch([1, 2, 3, 4, 5, 6], 6))
-console.log(binarySearch([1, 2, 3, 4, 5, 6], 0))
-console.log(binarySearch([1, 2, 3, 4, 5, 7], 6))
+function mergeSort(arr) {
+  if(arr.length === 1) {
+    return [arr[0]];
+  } else if(arr.length === 0) {
+    return [];
+  }
+
+  var half = Math.floor(arr.length / 2);
+  var left = mergeSort(arr.slice(0, half));
+  var right = mergeSort(arr.slice(half));
+  return merge(left, right);
+}
+
+function merge(left, right) {
+  if(left.length === 0){
+    return right;
+  }
+  if(right.length === 0){
+    return left;
+  }
+  if(left[0] < right[0]){
+    return [left[0]].concat(merge(left.slice(1), right));
+  } else {
+    return [right[0]].concat(merge(left, right.slice(1)));
+  }
+}
+
+function subset(arr) {
+  if(arr.length === 0) {
+    return []
+  }
+  if(arr.length === 1) {
+    return [arr]
+  }
+
+  return subset(arr.slice(0, arr.length - 1)).concat([arr[arr.length-1]]).concat([arr.slice(arr.length - 1)]);
+}
+
+
+console.log(subset([1, 2]));
